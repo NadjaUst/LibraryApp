@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show book</title>
+</head>
+<body>
+<h1>Show book</h1>
+<h2>Title:</h2>
+<div>
+    <p th:text="${book.getTitle() + ', ' + book.getAuthor()+ ', ' + book.getYear()}">VALUE</p>
+</div>
+<hr/>
+<h2>Status:</h2>
+<!-- if the book is free -->
+<div th:if="${people}">
+    <span>The book is free? To whom it should be assigned?</span>
+    <form th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getId()})}">
+        <label for="person">Choose a person: </label>
+        <select th:object="${person}" th:field="*{id}" id="person">
+            <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getName()}">
+            </option>
+        </select>
+        <input type="submit" value="To assign the book."/>
+    </form>
+</div>
+
+<!-- if the book has taken -->
+<div th:if="${bookOwner}">
+    <p th:text="'This book is taken by: ' + ${bookOwner.getName()} + ', ' + ${bookOwner.getYear()}"></p>
+    <!-- available  button -->
+    <form th:method="PATCH" th:action="@{/books/{id}/release(id=${book.getId()})}">
+        <button type="submit">Set the book as available.</button>
+    </form>
+</div>
+<hr/>
+<h2>Other actions:</h2>
+<!-- edit button -->
+<form th:action="@{/books/{id}/edit(id=${book.getId()})}" method="get" style="display:inline;">
+    <button type="submit">Edit</button>
+</form>
+<!-- delete button -->
+<form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}" style="display:inline;">
+    <button type="submit">Delete</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show person</title>
+</head>
+<body>
+<h1>Show person</h1>
+<h2> Personal information: </h2>
+<div>
+    <p th:text="${person.getName() + ', ' + person.getYear()}">VALUE</p>
+<!--    <p th:text="${person.getId()}">VALUE</p>-->
+</div>
+<hr/>
+<h2> Books: </h2>
+<div>
+    <p th:if="${#lists.isEmpty(books)}" th:text="'This person hasn\'t taken the books yet.'"></p>
+</div>
+<div th:each="book : ${books}">
+    <a th:href="@{/books/{book_id}(book_id=${book.getId()})}"
+       th:text="${book.getTitle() + ', ' + book.getAuthor()+ ', ' + book.getYear()}">book</a>
+</div>
+<hr/>
+<h2>Other actions:</h2>
+<!-- edit button -->
+<!--<a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit</a>-->
+<form th:action="@{/people/{id}/edit(id=${person.getId()})}" method="get" style="display:inline;">
+    <button type="submit">Edit</button>
+</form>
+<!-- delete button -->
+<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}" style="display:inline;">
+    <button type="submit" value="Delete">Delete</button>
+</form>
+
+
+
+</body>
+</html>
