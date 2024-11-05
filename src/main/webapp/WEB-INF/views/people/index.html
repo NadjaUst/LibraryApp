@@ -3,20 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>All people</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<h1>People</h1>
-<h2>All people in my library:</h2>
-<div th:each="person : ${people}">
-    <a th:href="@{/people/{id}(id=${person.getId()})}"
-       th:text="${person.getName() + ', ' + person.getYear()}">user</a>
+<div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+    <h2 class="display-5 fw-bold text-body-emphasis">All people in my library:</h2>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4" th:each="person : ${people}">
+            <a th:href="@{/people/{id}(id=${person.getId()})}"
+               th:text="${person.getName() + ', ' + person.getYear()}">user</a>
+        </p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <form th:action="@{/people/new}" method="get">
+                <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Create new person</button>
+            </form>
+<!--            <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button</button>-->
+<!--            <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>-->
+        </div>
+    </div>
 </div>
+<!--//-->
+<!--<h1>People</h1>-->
+<!--<h2>All people in my library:</h2>-->
+<!--<div th:each="person : ${people}">-->
+<!--    <a th:href="@{/people/{id}(id=${person.getId()})}"-->
+<!--       th:text="${person.getName() + ', ' + person.getYear()}">user</a>-->
+<!--</div>-->
 
-<hr/>
-<h2>Other actions:</h2>
-<form th:action="@{/people/new}" method="get">
-    <button type="submit">Create new person</button>
-</form>
+<!--<hr/>-->
+<!--<h2>Other actions:</h2>-->
+<!--<form th:action="@{/people/new}" method="get">-->
+<!--    <button type="submit">Create new person</button>-->
+<!--</form>-->
 
 </body>
 </html>

@@ -4,15 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Library</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="description" content="A simple app using Spring MVC and databases.">
 </head>
 <body>
-<h1>Welcome to My Library!</h1>
-<h2>Menu</h2>
-<nav>
-    <ul>
-        <li><a th:href="@{/people}">People</a></li>
-        <li><a th:href="@{/books}">Books</a></li>
-    </ul>
-</nav>
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+            <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                 class="d-block mx-lg-auto img-fluid" alt="Library Photo" width="700" height="500" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+            <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Welcome to My Library!</h1>
+            <p class="lead">It's a simple app using Spring MVC and databases. Choose a menu option below.</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <a th:href="@{/people}" class="btn btn-primary btn-lg px-4 me-md-2">People</a>
+                <a th:href="@{/books}" class="btn btn-outline-secondary btn-lg px-4">Books</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery and Bootstrap JS (optional) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
