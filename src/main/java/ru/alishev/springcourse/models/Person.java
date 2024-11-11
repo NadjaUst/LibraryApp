@@ -1,9 +1,27 @@
 package ru.alishev.springcourse.models;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "person")
+
 public class Person {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private int id;
+
+    @Column(name="name")
     private String name;
+
+    @Column(name="year")
     private int year;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
 
 
     public Person() {
@@ -11,7 +29,6 @@ public class Person {
     }
 
     public Person(int id, String name, int year) {
-        this.id = id;
         this.name = name;
         this.year = year;
     }
@@ -38,5 +55,13 @@ public class Person {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }
